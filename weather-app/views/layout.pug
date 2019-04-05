@@ -1,0 +1,39 @@
+doctype html
+html
+	script(src='/bower_components/jquery/dist/jquery.js')
+	script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+	script(src='/js/main.js')
+	
+	head
+		title Knowledgebase 
+		link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet' href='/css/style.css')
+	body
+		nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+			a.navbar-brand(href='/') LDAW
+			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+				span.navbar-toggler-icon
+			#navbarsExampleDefault.collapse.navbar-collapse
+				ul.navbar-nav.mr-auto
+					if user	
+						li.nav-item
+							a.nav-link(href='/articles/add') Add Article
+					if user	
+						li.nav-item
+							a.nav-link(href='/users/logout', tabindex='-1', aria-disabled='true') Logout
+					else
+						li.nav-item
+							a.nav-link(href='/users/register', tabindex='-1', aria-disabled='true') Register
+						li.nav-item
+							a.nav-link(href='/users/login', tabindex='-1', aria-disabled='true') Login
+	.container
+		!= messages('message', locals)
+		if errors
+			each error, i in errors
+				div(class="alert alter-danger") #{error.msg}
+		block content
+		br
+		hr
+		footer
+			p Copyright &copy; 2019 
+			

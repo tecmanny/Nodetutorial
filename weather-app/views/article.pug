@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1= article.title
+	h5 Written by #{article.author}
+	p= article.body
+	h2= article.title
+	hr
+	a.btn.btn-primary(href='/articles/edit/'+article._id) Edit
+	
